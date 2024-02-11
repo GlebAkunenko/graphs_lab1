@@ -6,7 +6,7 @@ def random_weight(p_zero, max_w):
         return randint(1, max_w)
     return 0
 
-n = 10 ** 2
+n = 10 ** 2 * 2
 
 start = time()
 

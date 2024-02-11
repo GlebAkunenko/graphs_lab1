@@ -144,21 +144,29 @@ def test(matrix: list[list[int]], labels: list[str]) -> list[Record]:
 
 from prettytable import PrettyTable
 
-records = test(matrices[-2], labels)
-records = {
-    task: [r for r in records if r.task == task.value]
-    for task in Task
-}
+from multiprocessing import Pool
 
-tables: list[PrettyTable] = []
+if __name__ == "__main__":
+    with Pool() as p:
+        records_list = p.starmap(test, [(matrix.copy(), labels.copy()) for matrix in matrices])
 
-for task in Task:
-    table = PrettyTable(field_names=["Представление", "Время (мс)"], title=task.value)
-    table.add_rows([
-        (r.solve, f"{int(r.time * 1000)}")
-        for r in records[task]
-    ])
-    tables.append(table)
+    records: dict[tuple[str, str], list[Record]] = {(task.value, solve.value): [] for task in Task for solve in Solve}
+    for record in records_list:
+        for r in record:
+            if isinstance(r, Record):
+                records[r.task, r.solve].append(r)
+            else:
+                raise Exception("")
 
-for table in tables:
-    print(table)
+    tables: list[PrettyTable] = []
+
+    for task in Task:
+        table = PrettyTable(field_names=["Представление"] + [f"t{i} (мс)" for i in range(1, len(matrices)+1)], title=task.value)
+        table.add_rows([
+            [records[task.value, solve.value][0].solve] + [int(records[task.value, solve.value][i].time * 1000) for i in range(len(matrices))]
+            for solve in Solve
+        ])
+        tables.append(table)
+
+    for table in tables:
+        print(table)

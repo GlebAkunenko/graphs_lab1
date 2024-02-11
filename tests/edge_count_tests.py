@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-import representations
+import representations as graphs
 from problems import edge_count
 
 class EdgeCountTests(TestCase):

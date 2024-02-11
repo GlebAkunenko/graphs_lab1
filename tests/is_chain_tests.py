@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from problems import is_chain
-import representations
+import representations as graphs
 
 class IsChainTests(TestCase):
 

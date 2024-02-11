@@ -23,7 +23,7 @@ def from_node_records(nodes: list[NodeRecord]) -> int:
 if __name__ == "__main__":
 
     from data import labels, matrix
-    import representations
+    import representations as graphs
 
     print("Задача подсчёта количества ребер в графе")
 

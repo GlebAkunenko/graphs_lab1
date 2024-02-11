@@ -48,7 +48,7 @@ def from_node_records(nodes: list[NodeRecord], limit: int | float) -> list[str]:
 if __name__ == "__main__":
 
     from data import labels, matrix
-    import representations
+    import representations as graphs
 
     print("Задача нахождения вершин, сумма весов инцидентных ребер которых больше заданной величины")
 

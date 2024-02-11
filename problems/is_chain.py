@@ -54,7 +54,7 @@ def from_node_records(nodes: list[NodeRecord], path: str) -> bool:
 if __name__ == "__main__":
 
     from data import labels, matrix
-    import representations
+    import representations as graphs
 
     print("Задача проверки задаёт ли заданная последовательность вершин цепь")
 

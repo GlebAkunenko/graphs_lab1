@@ -1,13 +1,4 @@
-from time import time
 
-def measure_func_time(func, *args) -> float:
-    sum = 0
-    n = 5
-    for t in range(n):
-        start = time()
-        func(*args)
-        sum += time() - start
-    return sum / n
 
 
 def make_path(edge_list: list[tuple[str, str, int]], start: str, size: int) -> str:

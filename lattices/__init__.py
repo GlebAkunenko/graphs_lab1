@@ -1,0 +1,1 @@
+from .hexagonal import make_graph as hexagonal

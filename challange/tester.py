@@ -1,8 +1,16 @@
-from utils import measure_func_time
-from .graphs import matrices, labels
-from ..representations import edge_list_from_matrix, node_records_from_matrix
-
+from time import time
 import problems
+
+
+def measure_func_time(func, *args) -> float:
+    sum = 0
+    n = 2
+    for t in range(n):
+        start = time()
+        func(args)
+        sum += time() - start
+    return sum / n
+
 
 class Test:
     def __init__(self, task_name: str, task_func, args: list):

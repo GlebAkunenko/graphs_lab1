@@ -21,7 +21,7 @@ class NodeRecord:
         self.input_weights: list[int | float] = []
         self.output_weights: list[int | float] = []
 
-    def connect(self, end: "NodeRecord", weight: int | float):
+    def connect(self, end: "NodeRecord", weight: int | float = 1):
         self.children.append(end.title)
         self.output_weights.append(weight)
         end.parents.append(self.title)
@@ -45,6 +45,10 @@ class NodeRecord:
     @property
     def incidents_weights(self) -> list[int | float]:
         return self.input_weights + self.output_weights
+
+    @property
+    def degree(self) -> int:
+        return len(self.neighbours)
 
 
 def node_records_from_matrix(matrix: list[list[int | float]], labels: list[str] = None) -> list[NodeRecord]:
